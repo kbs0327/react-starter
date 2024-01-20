@@ -1,14 +1,19 @@
-import {useEffect, useState} from 'react';
-import Title from './components/Title';
+import { useCallback, useState } from "react";
+import Title from "./components/Title";
+import TitleInput from "./components/TitleInput";
 
 function App() {
-  const [, setState] = useState({});
+  const [value, setValue] = useState('안녕하세요.');
 
-  useEffect(() => {
-    console.log('App rerender trigger');
-    setState({});
+  const handleChange = useCallback((value) => {
+    setValue(value);
   }, []);
 
-  return <Title style={{color: 'blue'}}>안녕하세요.</Title>;
+  return (
+    <>
+      <Title style={{ color: "blue" }}>{value}</Title>
+      <TitleInput value={value} onChange={handleChange}/>
+    </>
+  );
 }
 export default App;
