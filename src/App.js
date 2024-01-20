@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import TodoApp from "./components/TodoApp";
+import TodoContextProvider from "./components/TodoContextProvider";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <>
+      <TodoContextProvider>
+        <TodoApp />
+      </TodoContextProvider>
+      <footer className="info">
+        <p>Double-click to edit a todo</p>
+        <p>Created by the TodoMVC Team</p>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Part of <a href="http://todomvc.com">TodoMVC</a>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      </footer>
+    </>
   );
 }
 
