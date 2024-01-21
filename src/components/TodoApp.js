@@ -1,10 +1,10 @@
+import {useState} from 'react';
 import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
 
 function TodoApp() {
-  // FIXME useState를 사용하여 상태화
-  const todos = [
+  const [todos, setTodos] = useState([
     {
       value: "교육",
       checked: false,
@@ -20,18 +20,15 @@ function TodoApp() {
       checked: false,
       id: 3,
     },
-  ];
+  ]);
 
   return (
     <section className="todoapp">
-      {/* FIXME setTodos 전달 */}
-      <Header />
+      <Header setTodos={setTodos}/>
       {todos.length > 0 && (
         <>
-          {/* FIXME setTodos 전달 */}
-          <Main todos={todos} />
-          {/* FIXME setTodos 전달 */}
-          <Footer todos={todos} />
+          <Main todos={todos} setTodos={setTodos}/>
+          <Footer todos={todos} setTodos={setTodos}/>
         </>
       )}
     </section>

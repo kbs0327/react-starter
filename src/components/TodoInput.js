@@ -17,20 +17,20 @@ function TodoInput({ setTodos }) {
         checked: false,
         id: id++,
       };
-      // FIXME setTodos 를 이용하여 가장 마지막에 todo 추가
+      setTodos((todos) => [...todos, todo]);
       setValue("");
     }
   };
 
   return (
-    // FIXME change 이벤트 발생시 handleChange 호출
-    // FIXME keyUp 이벤트 발생시 handleKeyUp 호출
     <input
       className="new-todo"
       id="todo-input"
       type="text"
       placeholder="What needs to be done?"
       value={value}
+      onChange={handleChange}
+      onKeyUp={handleKeyUp}
       autoFocus
     />
   );
