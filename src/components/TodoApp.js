@@ -4,7 +4,8 @@ import Header from "./Header";
 import Main from "./Main";
 
 function TodoApp() {
-  const [todos, setTodos] = useState([
+  // FIXME reducer 함수를 사용하는 useReducer 생성
+  const [todos, dispatch] = useState([
     {
       value: "교육",
       checked: false,
@@ -24,14 +25,31 @@ function TodoApp() {
 
   return (
     <section className="todoapp">
-      <Header setTodos={setTodos}/>
+      <Header dispatch={dispatch}/>
       {todos.length > 0 && (
         <>
-          <Main todos={todos} setTodos={setTodos}/>
-          <Footer todos={todos} setTodos={setTodos}/>
+          <Main todos={todos} dispatch={dispatch}/>
+          <Footer todos={todos} dispatch={dispatch}/>
         </>
       )}
     </section>
   );
 }
 export default TodoApp;
+
+let index = 4;
+
+function reducer(todos, action) {
+  switch (action.type) {
+    case "add":
+      // FIXME implement
+    case "delete":
+      // FIXME implement
+    case "update":
+      // FIXME implement
+    case "clearCompleted":
+      // FIXME implement
+    default:
+      return todos;
+  }
+}

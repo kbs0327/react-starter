@@ -1,10 +1,10 @@
 import TodoInput from "./TodoInput";
 
-function Header({setTodos}) {
+function Header({dispatch}) {
   return (
     <header>
       <h1>todos</h1>
-      <TodoInput setTodos={setTodos}/>
+      <TodoInput dispatch={dispatch}/>
     </header>
   );
 }

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 let id = 3;
 
-function TodoInput({ setTodos }) {
+function TodoInput({ dispatch, setTodos }) {
   const [value, setValue] = useState("");
 
   const handleChange = (event) => {
@@ -17,6 +17,7 @@ function TodoInput({ setTodos }) {
         checked: false,
         id: id++,
       };
+    // FIXME setTodos를 dispatch를 사용하게 변경
       setTodos((todos) => [...todos, todo]);
       setValue("");
     }
