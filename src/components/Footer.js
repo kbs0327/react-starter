@@ -1,4 +1,5 @@
 function Footer({ todos, dispatch }) {
+  // FIXME TodoContext 사용하게 변경
   const activeTodoCount = todos.filter((todo) => !todo.checked).length;
 
   const handleClickButton = () => {

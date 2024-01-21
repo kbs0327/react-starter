@@ -1,9 +1,9 @@
 import TodoList from "./TodoList";
 
-function Main(props) {
+function Main() {
   return (
     <main className="main">
-      <TodoList {...props} />
+      <TodoList />
     </main>
   );
 }

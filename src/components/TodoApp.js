@@ -4,6 +4,7 @@ import Header from "./Header";
 import Main from "./Main";
 
 function TodoApp() {
+  // FIXME Reducer 정의 부분 TodoContextProvider로 이동
   const [todos, dispatch] = useReducer(reducer, [
     {
       value: "교육",
@@ -24,11 +25,11 @@ function TodoApp() {
 
   return (
     <section className="todoapp">
-      <Header dispatch={dispatch}/>
+      <Header />
       {todos.length > 0 && (
         <>
-          <Main todos={todos} dispatch={dispatch}/>
-          <Footer todos={todos} dispatch={dispatch}/>
+          <Main />
+          <Footer />
         </>
       )}
     </section>
@@ -36,6 +37,7 @@ function TodoApp() {
 }
 export default TodoApp;
 
+// FIXME 정의 부분 TodoContextProvider로 이동
 let index = 4;
 
 function reducer(todos, action) {
