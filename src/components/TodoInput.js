@@ -1,9 +1,10 @@
-import {forwardRef, useContext, useImperativeHandle, useRef, useState} from 'react';
-import TodoContext from "../TodoContext";
+import {forwardRef, useContext, useImperativeHandle, useRef} from 'react';
+import FilterContext from '../FilterContext';
+import TodoContext from '../TodoContext';
 
 function TodoInput(_, ref) {
   const { dispatch } = useContext(TodoContext);
-  const [value, setValue] = useState("");
+  const {filter, setFilter} = useContext(FilterContext);
   const inputRef = useRef(null);
 
   useImperativeHandle(ref, () => ({
@@ -13,7 +14,8 @@ function TodoInput(_, ref) {
   }), []);
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    const value = event.target.value;
+    setFilter(value);
   };
 
   const handleKeyUp = (event) => {
@@ -23,7 +25,7 @@ function TodoInput(_, ref) {
         type: "add",
         value,
       });
-      setValue("");
+      setFilter("");
     }
   };
 
@@ -34,7 +36,7 @@ function TodoInput(_, ref) {
       id="todo-input"
       type="text"
       placeholder="What needs to be done?"
-      value={value}
+      value={filter}
       onChange={handleChange}
       onKeyUp={handleKeyUp}
       autoFocus
