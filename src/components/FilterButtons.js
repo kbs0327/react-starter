@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import {startTransition, useContext} from 'react';
 import FilterContext from '../FilterContext';
 
 const links = [
@@ -25,8 +25,9 @@ function FilterButtons() {
   const isSelected = (link) => (hasFilter ? filter === link.filter : link.default);
 
   const handleClick = filter => {
-    // FIXME startTransition 적용
-    setFilter(filter);
+    startTransition(() => {
+      setFilter(filter);
+    });
   }
 
   return (
