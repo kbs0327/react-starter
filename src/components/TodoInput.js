@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import TodoContext from "../TodoContext";
 
-function TodoInput({ dispatch }) {
-  // FIXME TodoContext 사용하게 변경
+function TodoInput() {
+  const { dispatch } = useContext(TodoContext);
   const [value, setValue] = useState("");
 
   const handleChange = (event) => {

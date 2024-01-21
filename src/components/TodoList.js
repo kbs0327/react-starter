@@ -1,7 +1,9 @@
+import { useContext } from "react";
+import TodoContext from "../TodoContext";
 import TodoItem from "./TodoItem";
 
-function TodoList({ todos, dispatch }) {
-  // FIXME TodoContext 사용하게 변경
+function TodoList() {
+  const { todos, dispatch } = useContext(TodoContext);
   return (
     <ul className="todo-list">
       {todos.map((todo) => (
@@ -10,4 +12,4 @@ function TodoList({ todos, dispatch }) {
     </ul>
   );
 }
-export default TodoList
+export default TodoList;
