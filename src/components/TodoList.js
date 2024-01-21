@@ -1,16 +1,19 @@
 import {useContext} from 'react';
-import useHash from '../hooks/useHash';
+import FilterContext from '../FilterContext';
 import TodoContext from '../TodoContext';
 import TodoItem from './TodoItem';
 
 function TodoList() {
   const { todos, dispatch } = useContext(TodoContext);
-  const hash = useHash();
+  const {filter} = useContext(FilterContext);
 
-  const existHash = hash === "#/active" || hash === "#/completed";
-  const filteredTodos = existHash
-    ? todos.filter((todo) => todo.checked === (hash === "#/active"))
+  const hasFilter = filter === "active" || filter === "completed";
+  const filteredTodos = hasFilter
+    ? todos.filter((todo) => todo.checked === (filter === "active"))
     : todos;
+  if (!hasFilter) {
+    tooSlowFunction();
+  }
   return (
     <ul className="todo-list">
       {filteredTodos.map((todo) => (
@@ -19,4 +22,10 @@ function TodoList() {
     </ul>
   );
 }
+
+function tooSlowFunction() {
+  let value = 1000000000;
+  while (value--);
+}
+
 export default TodoList;

@@ -1,33 +1,39 @@
-import useHash from '../hooks/useHash';
+import {useContext} from 'react';
+import FilterContext from '../FilterContext';
 
 const links = [
   {
-    link: "#/",
+    filter: "all",
     label: "All",
     default: true,
   },
   {
-    link: "#/active",
+    filter: "active",
     label: "Active",
     default: false,
   },
   {
-    link: "#/completed",
+    filter: "completed",
     label: "Completed",
     default: false,
   },
 ];
 function FilterButtons() {
-  const hash = useHash();
-  const existHash = links.some((link) => link.link === hash);
+  const {filter, setFilter} = useContext(FilterContext);
+  const hasFilter = links.some((link) => link.filter === filter);
 
-  const isSelected = (link) => (existHash ? hash === link.link : link.default);
+  const isSelected = (link) => (hasFilter ? filter === link.filter : link.default);
+
+  const handleClick = filter => {
+    // FIXME startTransition 적용
+    setFilter(filter);
+  }
 
   return (
     <ul className="filters">
       {links.map((link) => (
-        <li key={link.link}>
-          <a href={link.link} className={isSelected(link) ? "selected" : ""}>
+        <li key={link.filter}>
+          <a href="#" onClick={() => handleClick(link.filter)} className={isSelected(link) ? "selected" : ""}>
             {link.label}
           </a>
         </li>
