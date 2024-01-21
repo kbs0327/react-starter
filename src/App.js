@@ -13,20 +13,22 @@ function App() {
         <header>
           <h1>todos</h1>
         </header>
-        {/* FIXME main과 footer는 todos가 있는 경우에만 보이게 수정 */}
-        <main className="main">
-          <ul className="todo-list">
-            {/* FIXME checked일 때에만 li에 completed class가 보이게 수정 */}
-            <li>
-              <label>{/* FIXME todo value 보이게 수정 */}</label>
-            </li>
-          </ul>
-        </main>
-        <footer className="footer">
-          <span className="todo-count">
-            <strong>{/* FIXME activeTodoCount 보이게 수정 */}</strong> items left
-          </span>
-        </footer>
+        {todos.length > 0 && (
+          <>
+            <main className="main">
+              <ul className="todo-list">
+                <li className={todos[0].checked ? 'completed' : ''}>
+                  <label>{todos[0].value}</label>
+                </li>
+              </ul>
+            </main>
+            <footer className="footer">
+              <span className="todo-count">
+                <strong>{activeTodoCount}</strong> items left
+              </span>
+            </footer>
+          </>
+        )}
       </section>
 
       <footer className="info">
