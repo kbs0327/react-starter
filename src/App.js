@@ -1,5 +1,7 @@
+import Timer from './components/Timer';
+
 function App() {
-  return <h1>todos</h1>;
+  return <Timer />
 }
 
 export default App;
