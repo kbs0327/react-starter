@@ -5,6 +5,16 @@ function App() {
       checked: false,
       id: 1,
     },
+    {
+      value: '업무',
+      checked: true,
+      id: 2
+    },
+    {
+      value: '티타임',
+      checked: false,
+      id: 3
+    }
   ];
   const activeTodoCount = todos.filter((todo) => !todo.checked).length;
   return (
@@ -17,6 +27,7 @@ function App() {
           <>
             <main className="main">
               <ul className="todo-list">
+                {/* FIXME todos의 모든 목록을 보여주게 변경 */}
                 <li className={todos[0].checked ? 'completed' : ''}>
                   <label>{todos[0].value}</label>
                 </li>
