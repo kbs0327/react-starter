@@ -20,7 +20,14 @@ const links = [
 function FilterButtons() {
   const [hash, setHash] = useState(window.location.hash);
   useEffect(() => {
-    // FIXME window 에서 hashchange event 발생할 때마다 setHash로 값 추가
+    const listener = () => {
+      setHash(window.location.hash);
+    };
+    window.addEventListener("hashchange", listener);
+
+    return () => {
+      window.removeEventListener("hashchange", listener);
+    };
   }, []);
   const existHash = links.some((link) => link.link === hash);
 
