@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react";
+import {useSyncExternalStore} from 'react';
 
 function useHash() {
-  // FIXME useSyncExternalStore 를 사용하도록 변경
-  const [hash, setHash] = useState(window.location.hash);
-  useEffect(() => {
-    const listener = () => {
-      setHash(window.location.hash);
-    };
-    window.addEventListener("hashchange", listener);
+  return useSyncExternalStore(subscribe, getSnapshot);
+}
 
-    return () => {
-      window.removeEventListener("hashchange", listener);
-    };
-  }, []);
+function subscribe(callback) {
+  window.addEventListener("hashchange", callback);
 
-  return hash;
+  return () => {
+    window.removeEventListener("hashchange", callback);
+  };
+}
+
+function getSnapshot() {
+  return window.location.hash;
 }
 
 export default useHash;
