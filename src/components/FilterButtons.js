@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import useHash from '../hooks/useHash';
 
 const links = [
   {
@@ -18,18 +18,7 @@ const links = [
   },
 ];
 function FilterButtons() {
-  // FIXME hooks/useHash 커스텀 훅으로 분리
-  const [hash, setHash] = useState(window.location.hash);
-  useEffect(() => {
-    const listener = () => {
-      setHash(window.location.hash);
-    };
-    window.addEventListener("hashchange", listener);
-
-    return () => {
-      window.removeEventListener("hashchange", listener);
-    };
-  }, []);
+  const hash = useHash();
   const existHash = links.some((link) => link.link === hash);
 
   const isSelected = (link) => (existHash ? hash === link.link : link.default);

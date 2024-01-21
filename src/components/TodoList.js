@@ -1,21 +1,12 @@
-import {useContext, useEffect, useState} from 'react';
-import TodoContext from "../TodoContext";
-import TodoItem from "./TodoItem";
+import {useContext} from 'react';
+import useHash from '../hooks/useHash';
+import TodoContext from '../TodoContext';
+import TodoItem from './TodoItem';
 
 function TodoList() {
   const { todos, dispatch } = useContext(TodoContext);
-  // FIXME hooks/useHash 커스텀 훅으로 분리
-  const [hash, setHash] = useState(window.location.hash);
-  useEffect(() => {
-    const listener = () => {
-      setHash(window.location.hash);
-    };
-    window.addEventListener("hashchange", listener);
+  const hash = useHash();
 
-    return () => {
-      window.removeEventListener("hashchange", listener);
-    };
-  }, []);
   const existHash = hash === "#/active" || hash === "#/completed";
   const filteredTodos = existHash
     ? todos.filter((todo) => todo.checked === (hash === "#/active"))
