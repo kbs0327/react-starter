@@ -1,11 +1,16 @@
+import {useRef} from 'react';
 import TodoInput from "./TodoInput";
 
 function Header() {
+  const todoInputRef = useRef(null);
+
+  const handleClick = () => {
+    todoInputRef.current?.focus();
+  }
   return (
     <header>
-      {/* FIXME todos를 클릭하면 input이 focus 되게 수정 */}
-      <h1>todos</h1>
-      <TodoInput />
+      <h1 onClick={handleClick}>todos</h1>
+      <TodoInput ref={todoInputRef} />
     </header>
   );
 }

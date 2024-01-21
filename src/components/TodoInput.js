@@ -1,9 +1,16 @@
-import { useContext, useState } from "react";
+import {forwardRef, useContext, useImperativeHandle, useRef, useState} from 'react';
 import TodoContext from "../TodoContext";
 
-function TodoInput() {
+function TodoInput(_, ref) {
   const { dispatch } = useContext(TodoContext);
   const [value, setValue] = useState("");
+  const inputRef = useRef(null);
+
+  useImperativeHandle(ref, () => ({
+    focus() {
+      inputRef.current?.focus();
+    }
+  }), []);
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -22,6 +29,7 @@ function TodoInput() {
 
   return (
     <input
+      ref={inputRef}
       className="new-todo"
       id="todo-input"
       type="text"
@@ -34,4 +42,4 @@ function TodoInput() {
   );
 }
 
-export default TodoInput;
+export default forwardRef(TodoInput);
