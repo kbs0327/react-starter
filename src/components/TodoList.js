@@ -4,6 +4,7 @@ import TodoItem from "./TodoItem";
 
 function TodoList() {
   const { todos, dispatch } = useContext(TodoContext);
+  // FIXME hooks/useHash 커스텀 훅으로 분리
   const [hash, setHash] = useState(window.location.hash);
   useEffect(() => {
     const listener = () => {

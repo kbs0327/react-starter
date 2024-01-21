@@ -18,6 +18,7 @@ const links = [
   },
 ];
 function FilterButtons() {
+  // FIXME hooks/useHash 커스텀 훅으로 분리
   const [hash, setHash] = useState(window.location.hash);
   useEffect(() => {
     const listener = () => {
