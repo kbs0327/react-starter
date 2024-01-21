@@ -1,11 +1,10 @@
-import {useState} from 'react';
+import {useReducer} from 'react';
 import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
 
 function TodoApp() {
-  // FIXME reducer 함수를 사용하는 useReducer 생성
-  const [todos, dispatch] = useState([
+  const [todos, dispatch] = useReducer(reducer, [
     {
       value: "교육",
       checked: false,
@@ -42,13 +41,22 @@ let index = 4;
 function reducer(todos, action) {
   switch (action.type) {
     case "add":
-      // FIXME implement
+      return [
+        ...todos,
+        {
+          value: action.value,
+          checked: false,
+          id: index++,
+        },
+      ];
     case "delete":
-      // FIXME implement
+      return todos.filter((todo) => todo.id !== action.id);
     case "update":
-      // FIXME implement
+      return todos.map((todo) =>
+        todo.id === action.todo.id ? { ...todo, ...action.todo } : todo
+      );
     case "clearCompleted":
-      // FIXME implement
+      return todos.filter((todo) => !todo.checked);
     default:
       return todos;
   }
