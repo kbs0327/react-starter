@@ -3,6 +3,7 @@ import Header from "./Header";
 import Main from "./Main";
 
 function TodoApp() {
+  // FIXME useState를 사용하여 상태화
   const todos = [
     {
       value: "교육",
@@ -23,10 +24,13 @@ function TodoApp() {
 
   return (
     <section className="todoapp">
+      {/* FIXME setTodos 전달 */}
       <Header />
       {todos.length > 0 && (
         <>
+          {/* FIXME setTodos 전달 */}
           <Main todos={todos} />
+          {/* FIXME setTodos 전달 */}
           <Footer todos={todos} />
         </>
       )}
